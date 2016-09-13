@@ -1,0 +1,10 @@
+FROM demoregistry.dataman-inc.com/library/centos7-base:20160907193907 
+MAINTAINER pro zpang@dataman-inc.com
+
+ENV PROMETHEUS_VERSION=1.1.2
+ENV PROMETHEUS_PKG_NAME=prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz
+
+RUN wget -O /tmp/$PROMETHEUS_PKG_NAME https://github.com/prometheus/prometheus/releases/download/v$PROMETHEUS_VERSION/$PROMETHEUS_PKG_NAME && \
+	    tar xzvf /tmp/$PROMETHEUS_PKG_NAME -C /
+
+ENTRYPOINT ["/prometheus-1.1.2.linux-amd64/prometheus"]
